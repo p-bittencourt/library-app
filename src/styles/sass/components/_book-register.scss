@@ -1,0 +1,19 @@
+@use "../custom" as *;
+
+body {
+  background-color: $gray-200;
+}
+
+.register-form {
+  background-color: $primary;
+  border-radius: 5px;
+
+  label {
+    color: $text-color;
+    font-size: 1.175rem;
+  }
+
+  button {
+    padding: 1rem;
+  }
+}

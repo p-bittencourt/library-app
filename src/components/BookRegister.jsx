@@ -27,7 +27,7 @@ const BookRegister = () => {
     <>
       <div className="container">
         <h2 className="mt-3">Book Register</h2>
-        <form onSubmit={handleSubmit} className="mt-3 p-3">
+        <form onSubmit={handleSubmit} className="mt-3 p-3 register-form">
           <div className="mb-3">
             <label htmlFor="bookTitle" className="form-label">
               Book Title
@@ -119,8 +119,8 @@ const BookRegister = () => {
             ></textarea>
           </div>
           <div className="button-container text-end">
-            <button type="submit" className="btn btn-primary">
-              Submit
+            <button type="submit" className="btn btn-secondary">
+              Add Book
             </button>
           </div>
         </form>
