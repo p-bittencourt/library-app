@@ -11876,4 +11876,17 @@ body {
   border-color: #009688;
 }
 
+.book-card {
+  position: relative;
+}
+
+.remove-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0 0.3rem;
+}
+
 /*# sourceMappingURL=styles.css.map */
