@@ -121,7 +121,7 @@ const BookRegister = () => {
             ></textarea>
           </div>
           <div className="button-container text-end">
-            <button type="submit" className="btn btn-secondary">
+            <button type="submit" className="btn btn-secondary text-white">
               Add Book
             </button>
           </div>
