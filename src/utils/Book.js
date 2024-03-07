@@ -27,4 +27,4 @@ const storeBook = (book) => {
   localStorage.setItem("library", JSON.stringify(storedBooks));
 };
 
-export { Book, storeBook, clearStoredBooks };
+export { Book, storeBook, clearStoredBooks, getStoredBooks };

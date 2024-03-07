@@ -23,6 +23,12 @@ const BookRegister = () => {
     const newBook = new Book(title, author, pagesValue, infoValue, read);
 
     storeBook(newBook);
+
+    setTitle("");
+    setAuthor("");
+    setPages("");
+    setRead(false);
+    setInfo("");
   };
 
   return (
