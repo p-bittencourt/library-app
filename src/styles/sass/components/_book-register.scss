@@ -17,3 +17,8 @@ body {
     padding: 1rem;
   }
 }
+
+.form-check-input:checked {
+  background-color: $secondary;
+  border-color: $secondary;
+}

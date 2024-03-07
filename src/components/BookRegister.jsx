@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Book, storeBook } from "../utils/Book";
+import { Book, storeBook, clearStoredBooks } from "../utils/Book";
 
 const BookRegister = () => {
   const [title, setTitle] = useState("");
@@ -21,6 +21,8 @@ const BookRegister = () => {
     }
 
     const newBook = new Book(title, author, pagesValue, infoValue, read);
+
+    storeBook(newBook);
   };
 
   return (

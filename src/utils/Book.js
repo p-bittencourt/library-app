@@ -16,10 +16,15 @@ const getStoredBooks = () => {
   return storedBooks ? JSON.parse(storedBooks) : [];
 };
 
+const clearStoredBooks = () => {
+  const storedBooks = [];
+  localStorage.setItem("library", JSON.stringify(storedBooks));
+};
+
 const storeBook = (book) => {
   const storedBooks = getStoredBooks();
   storedBooks.push(book);
   localStorage.setItem("library", JSON.stringify(storedBooks));
 };
 
-export { Book, storeBook };
+export { Book, storeBook, clearStoredBooks };

@@ -11871,4 +11871,9 @@ body {
   padding: 1rem;
 }
 
+.form-check-input:checked {
+  background-color: #864d7a;
+  border-color: #864d7a;
+}
+
 /*# sourceMappingURL=styles.css.map */
