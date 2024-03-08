@@ -15,7 +15,7 @@ const ShowLibrary = () => {
     if (storedBooks.length === 0) {
       return (
         <div className="container text-center">
-          <h3>No books stored</h3>
+          <h3 className="mt-5">No books stored</h3>
         </div>
       );
     }

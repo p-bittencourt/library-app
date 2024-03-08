@@ -1,0 +1,18 @@
+@use "../custom" as *;
+
+.sidebar {
+  padding: 1rem;
+
+  @include media-breakpoint-up(md) {
+    margin-top: 4rem;
+  }
+}
+
+.sidebar-btn {
+  margin-bottom: 0.875rem;
+  width: 75%;
+
+  @include media-breakpoint-up(md) {
+    width: 100%;
+  }
+}

@@ -11855,6 +11855,25 @@ textarea.form-control-lg {
   color: #000;
 }
 
+.sidebar {
+  padding: 1rem;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    margin-top: 4rem;
+  }
+}
+
+.sidebar-btn {
+  margin-bottom: 0.875rem;
+  width: 75%;
+}
+@media (min-width: 768px) {
+  .sidebar-btn {
+    width: 100%;
+  }
+}
+
 body {
   background-color: #e9ecef;
 }
