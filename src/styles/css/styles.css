@@ -11858,7 +11858,7 @@ textarea.form-control-lg {
 .sidebar {
   padding: 1rem;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .sidebar {
     margin-top: 4rem;
   }
@@ -11868,7 +11868,7 @@ textarea.form-control-lg {
   margin-bottom: 0.875rem;
   width: 75%;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .sidebar-btn {
     width: 100%;
   }

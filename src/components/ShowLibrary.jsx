@@ -3,7 +3,7 @@ import { getStoredBooks } from "../utils/Book";
 
 const ShowLibrary = () => {
   const storedBooks = getStoredBooks();
-  const [removedBook, setRemovedBook] = useState(false);
+  const [removedBook, setRemovedBook] = useState(false); // Use this state to refresh the UI after deleting a book.
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const [bookToDelete, setBookToDelete] = useState(null);
 

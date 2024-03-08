@@ -19,7 +19,7 @@ function App() {
       </header>
       <div className="container-lg">
         <div className="row">
-          <div className="col-md-2 sidebar">
+          <div className="col-lg-2 sidebar">
             <ul className="text-center">
               <li
                 onClick={() => handleSectionChange("register")}
@@ -43,7 +43,7 @@ function App() {
               </li>
             </ul>
           </div>
-          <div className="col-md-10 content mb-5">
+          <div className="col-lg-10 content mb-5">
             {activeSection === "register" && <BookRegister />}
             {activeSection === "library" && <ShowLibrary />}
           </div>
