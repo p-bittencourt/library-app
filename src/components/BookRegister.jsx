@@ -7,6 +7,7 @@ const BookRegister = () => {
   const [pages, setPages] = useState("");
   const [read, setRead] = useState(false);
   const [info, setInfo] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,12 +30,30 @@ const BookRegister = () => {
     setPages("");
     setRead(false);
     setInfo("");
+    setShowNotification(true);
+  };
+
+  const handleDismiss = () => {
+    setShowNotification(false);
   };
 
   return (
     <>
       <div className="container">
         <h2 className="mt-3">Book Register</h2>
+        {showNotification && (
+          <div
+            className="alert alert-success m-3 d-flex justify-content-between"
+            role="alert"
+          >
+            Book added to the library!
+            <button
+              type="button"
+              className="btn-close"
+              onClick={handleDismiss}
+            ></button>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="mt-3 p-3 register-form">
           <div className="mb-3">
             <label htmlFor="bookTitle" className="form-label">

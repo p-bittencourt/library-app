@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { getStoredBooks, storeBook } from "../utils/Book";
 
 const ShowLibrary = () => {
   const storedBooks = getStoredBooks();
+  const [removedBook, setRemovedBook] = useState(false);
 
   const handleRemoveBook = (index) => {
     const newList = storedBooks.filter((_, i) => i !== index);
     localStorage.setItem("library", JSON.stringify(newList));
-    window.location.reload();
+    setRemovedBook(true);
   };
 
   const renderBooks = (storedBooks) => {
@@ -17,6 +18,10 @@ const ShowLibrary = () => {
           <h3>No books stored</h3>
         </div>
       );
+    }
+
+    if (removedBook) {
+      setRemovedBook(!removedBook);
     }
 
     return storedBooks.map((book, index) => (
@@ -29,7 +34,7 @@ const ShowLibrary = () => {
           <p className="card-text">{book.info}</p>
           <p className="card-text">Pages: {book.pages}</p>
           <button
-            className="btn btn-secondary remove-button text-white"
+            className="btn btn-white remove-button text-black"
             onClick={() => handleRemoveBook(index)}
           >
             x
