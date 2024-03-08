@@ -11913,4 +11913,13 @@ body {
   padding: 0 0.3rem;
 }
 
+.edit-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0 0.3rem;
+}
+
 /*# sourceMappingURL=styles.css.map */

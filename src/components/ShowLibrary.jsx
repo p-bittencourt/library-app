@@ -35,6 +35,12 @@ const ShowLibrary = () => {
           >
             x
           </button>
+          <button
+            className="btn btn-white edit-button text-black"
+            onClick={() => {}}
+          >
+            Edit
+          </button>
         </div>
       </div>
     ));
