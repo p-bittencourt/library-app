@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getStoredBooks, storeBook } from "../utils/Book";
+import { getStoredBooks } from "../utils/Book";
 
 const ShowLibrary = () => {
   const storedBooks = getStoredBooks();

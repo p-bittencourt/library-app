@@ -17,7 +17,7 @@ const BookRegister = () => {
 
     if (isNaN(pagesValue)) {
       pagesValue = 0;
-    } else if (infoValue === "") {
+    } else if (!infoValue) {
       infoValue = "Book description not informed.";
     }
 
