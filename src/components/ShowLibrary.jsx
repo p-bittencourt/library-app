@@ -15,7 +15,7 @@ const ShowLibrary = () => {
     if (storedBooks.length === 0) {
       return (
         <div className="container text-center">
-          <h3 className="mt-5">No books stored</h3>
+          <h3 className="mt-5 section-title">No books stored</h3>
         </div>
       );
     }
@@ -47,7 +47,7 @@ const ShowLibrary = () => {
   return (
     <>
       <div className="container">
-        <h2 className="mt-3">My Books</h2>
+        <h2 className="mt-3 section-title">My Books</h2>
         <div className="container my-books mb-4">
           {renderBooks(storedBooks)}
         </div>

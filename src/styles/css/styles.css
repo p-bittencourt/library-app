@@ -11874,6 +11874,11 @@ textarea.form-control-lg {
   }
 }
 
+.main-title,
+.section-title {
+  color: #012e40;
+}
+
 body {
   background-color: #e9ecef;
 }

@@ -40,7 +40,7 @@ const BookRegister = () => {
   return (
     <>
       <div className="container">
-        <h2 className="mt-3">Book Register</h2>
+        <h2 className="mt-3 section-title">Book Register</h2>
         {showNotification && (
           <div
             className="alert alert-success m-3 d-flex justify-content-between"
