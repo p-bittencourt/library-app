@@ -4,12 +4,8 @@ import { getStoredBooks } from "../utils/Book";
 const ShowLibrary = () => {
   const storedBooks = getStoredBooks();
   const [removedBook, setRemovedBook] = useState(false);
-
-  const handleRemoveBook = (index) => {
-    const newList = storedBooks.filter((_, i) => i !== index);
-    localStorage.setItem("library", JSON.stringify(newList));
-    setRemovedBook(true);
-  };
+  const [showDeleteNotification, setShowDeleteNotification] = useState(false);
+  const [bookToDelete, setBookToDelete] = useState(null);
 
   const renderBooks = (storedBooks) => {
     if (storedBooks.length === 0) {
@@ -35,7 +31,7 @@ const ShowLibrary = () => {
           <p className="card-text">Pages: {book.pages}</p>
           <button
             className="btn btn-white remove-button text-black"
-            onClick={() => handleRemoveBook(index)}
+            onClick={() => handleDeleteNotification(index)}
           >
             x
           </button>
@@ -44,10 +40,44 @@ const ShowLibrary = () => {
     ));
   };
 
+  const handleRemoveBook = () => {
+    const newList = storedBooks.filter((_, i) => i !== bookToDelete);
+    localStorage.setItem("library", JSON.stringify(newList));
+    setRemovedBook(true);
+    setShowDeleteNotification(false);
+    setBookToDelete(null);
+  };
+
+  const handleDismiss = () => {
+    setShowDeleteNotification(false);
+    setBookToDelete(null);
+  };
+
+  const handleDeleteNotification = (index) => {
+    setBookToDelete(index);
+    setShowDeleteNotification(true);
+  };
+
   return (
     <>
       <div className="container">
         <h2 className="mt-3 section-title">My Books</h2>
+        {showDeleteNotification && (
+          <div
+            className="alert alert-danger m-3 d-flex justify-content-between align-items-center"
+            role="alert"
+          >
+            Do you wish to the delete the book from the list?
+            <div className="button-container">
+              <button type="button" className="btn" onClick={handleRemoveBook}>
+                Yes
+              </button>
+              <button type="button" className="btn" onClick={handleDismiss}>
+                No
+              </button>
+            </div>
+          </div>
+        )}
         <div className="container my-books mb-4">
           {renderBooks(storedBooks)}
         </div>
