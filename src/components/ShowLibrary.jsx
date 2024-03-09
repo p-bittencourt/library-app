@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getStoredBooks } from "../utils/Book";
-import ModelDialog from "./ModelDialog";
+import { Modal } from "react-bootstrap";
 
 const ShowLibrary = () => {
   const storedBooks = getStoredBooks();
@@ -8,6 +8,33 @@ const ShowLibrary = () => {
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const [bookToDelete, setBookToDelete] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
+
+  function modelDialog() {
+    const initModal = () => {
+      setShowDialog(!showDialog);
+    };
+
+    return (
+      <>
+        <Modal show={showDialog}>
+          <Modal.Header closeButton onClick={initModal}>
+            <Modal.Title>React Modal Popover Example</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </Modal.Body>
+          <Modal.Footer>
+            <button className="btn btn-danger" onClick={initModal}>
+              Close
+            </button>
+            <button className="btn btn-dark" onClick={initModal}>
+              Store
+            </button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
 
   const handleShowDialog = () => {
     return setShowDialog(!showDialog);
@@ -94,11 +121,7 @@ const ShowLibrary = () => {
         )}
         <div className="container my-books mb-4">
           {renderBooks(storedBooks)}
-          {showDialog && (
-            <div className="container mt-3">
-              <ModelDialog />
-            </div>
-          )}
+          {showDialog && modelDialog()}
         </div>
       </div>
     </>
