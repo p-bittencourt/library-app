@@ -2,16 +2,13 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 
 function ModelDialog() {
-  const [isShown, invokeModal] = React.useState(false);
+  const [isShown, invokeModal] = React.useState(true);
   const initModal = () => {
     return invokeModal(!isShown);
   };
 
   return (
     <>
-      <button className="btn btn-primary" onClick={initModal}>
-        Open Modal
-      </button>
       <Modal show={isShown}>
         <Modal.Header closeButton onClick={initModal}>
           <Modal.Title>React Modal Popover Example</Modal.Title>

@@ -7,6 +7,11 @@ const ShowLibrary = () => {
   const [removedBook, setRemovedBook] = useState(false); // Use this state to refresh the UI after deleting a book.
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const [bookToDelete, setBookToDelete] = useState(null);
+  const [showDialog, setShowDialog] = useState(false);
+
+  const handleShowDialog = () => {
+    return setShowDialog(!showDialog);
+  };
 
   const renderBooks = (storedBooks) => {
     if (storedBooks.length === 0) {
@@ -38,7 +43,9 @@ const ShowLibrary = () => {
           </button>
           <button
             className="btn btn-white edit-button text-black"
-            onClick={() => {}}
+            onClick={() => {
+              handleShowDialog();
+            }}
           >
             Edit
           </button>
@@ -87,6 +94,11 @@ const ShowLibrary = () => {
         )}
         <div className="container my-books mb-4">
           {renderBooks(storedBooks)}
+          {showDialog && (
+            <div className="container mt-3">
+              <ModelDialog />
+            </div>
+          )}
         </div>
       </div>
     </>
