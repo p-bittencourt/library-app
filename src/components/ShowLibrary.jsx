@@ -8,20 +8,48 @@ const ShowLibrary = () => {
   const [showDeleteNotification, setShowDeleteNotification] = useState(false);
   const [bookToDelete, setBookToDelete] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
+  const [bookToEdit, setBookToEdit] = useState(null);
 
-  function modelDialog() {
+  function editDialog() {
+    console.log(typeof bookToEdit);
+    console.log(bookToEdit);
+    let editTitle = bookToEdit.title || "";
+    /* let editAuthor = book.author || "";
+    let editPages = book.pages || "";
+    let editRead = book.read || false;
+    let editInfo = book.info || ""; */
+
+    const handleEdit = () => {
+      console.log("called");
+    };
+
     const initModal = () => {
-      setShowDialog(!showDialog);
+      return setShowDialog(!showDialog);
     };
 
     return (
       <>
         <Modal show={showDialog}>
           <Modal.Header closeButton onClick={initModal}>
-            <Modal.Title>React Modal Popover Example</Modal.Title>
+            <Modal.Title>Book Editing</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            <form action={handleEdit()} className="edit-book">
+              <div className="mb-3">
+                <label htmlFor="editTitle" className="form-label">
+                  Edit Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="editTitle"
+                  placeholder=""
+                />
+              </div>
+              <button className="submit btn btn-secondary text-white">
+                Edit Book
+              </button>
+            </form>
           </Modal.Body>
           <Modal.Footer>
             <button className="btn btn-danger" onClick={initModal}>
@@ -36,9 +64,9 @@ const ShowLibrary = () => {
     );
   }
 
-  const handleShowDialog = () => {
+  /* const handleShowDialog = () => {
     return setShowDialog(!showDialog);
-  };
+  }; */
 
   const renderBooks = (storedBooks) => {
     if (storedBooks.length === 0) {
@@ -71,7 +99,8 @@ const ShowLibrary = () => {
           <button
             className="btn btn-white edit-button text-black"
             onClick={() => {
-              handleShowDialog();
+              setBookToEdit(book);
+              setShowDialog(!showDialog);
             }}
           >
             Edit
@@ -120,8 +149,8 @@ const ShowLibrary = () => {
           </div>
         )}
         <div className="container my-books mb-4">
+          {showDialog && editDialog()}
           {renderBooks(storedBooks)}
-          {showDialog && modelDialog()}
         </div>
       </div>
     </>
