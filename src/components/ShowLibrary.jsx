@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getStoredBooks } from "../utils/Book";
-import { Modal } from "react-bootstrap";
+import EditDialog from "./EditDialog";
 
 const ShowLibrary = () => {
   const storedBooks = getStoredBooks();
@@ -10,63 +10,14 @@ const ShowLibrary = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [bookToEdit, setBookToEdit] = useState(null);
 
-  function editDialog() {
-    console.log(typeof bookToEdit);
-    console.log(bookToEdit);
-    let editTitle = bookToEdit.title || "";
-    /* let editAuthor = book.author || "";
-    let editPages = book.pages || "";
-    let editRead = book.read || false;
-    let editInfo = book.info || ""; */
+  const handleCloseEditDialog = () => {
+    setShowDialog(false);
+  };
 
-    const handleEdit = () => {
-      console.log("called");
-    };
-
-    const initModal = () => {
-      return setShowDialog(!showDialog);
-    };
-
-    return (
-      <>
-        <Modal show={showDialog}>
-          <Modal.Header closeButton onClick={initModal}>
-            <Modal.Title>Book Editing</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form action={handleEdit()} className="edit-book">
-              <div className="mb-3">
-                <label htmlFor="editTitle" className="form-label">
-                  Edit Title
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="editTitle"
-                  placeholder=""
-                />
-              </div>
-              <button className="submit btn btn-secondary text-white">
-                Edit Book
-              </button>
-            </form>
-          </Modal.Body>
-          <Modal.Footer>
-            <button className="btn btn-danger" onClick={initModal}>
-              Close
-            </button>
-            <button className="btn btn-dark" onClick={initModal}>
-              Store
-            </button>
-          </Modal.Footer>
-        </Modal>
-      </>
-    );
-  }
-
-  /* const handleShowDialog = () => {
-    return setShowDialog(!showDialog);
-  }; */
+  const handleEditButton = (book) => {
+    setBookToEdit(book);
+    setShowDialog(!showDialog);
+  };
 
   const renderBooks = (storedBooks) => {
     if (storedBooks.length === 0) {
@@ -99,8 +50,7 @@ const ShowLibrary = () => {
           <button
             className="btn btn-white edit-button text-black"
             onClick={() => {
-              setBookToEdit(book);
-              setShowDialog(!showDialog);
+              handleEditButton(book);
             }}
           >
             Edit
@@ -149,7 +99,14 @@ const ShowLibrary = () => {
           </div>
         )}
         <div className="container my-books mb-4">
-          {showDialog && editDialog()}
+          {bookToEdit && (
+            <EditDialog
+              show={showDialog}
+              handleClose={handleCloseEditDialog}
+              book={bookToEdit}
+            />
+          )}
+          {/* showDialog && editDialog()*/}
           {renderBooks(storedBooks)}
         </div>
       </div>
@@ -158,3 +115,67 @@ const ShowLibrary = () => {
 };
 
 export default ShowLibrary;
+
+/*
+Code for editing on edidDialog function
+
+  const [showDialog, setShowDialog] = useState(false);
+  const [bookToEdit, setBookToEdit] = useState(null);
+
+
+function editDialog() {
+    console.log(typeof bookToEdit);
+    console.log(bookToEdit);
+    let editTitle = bookToEdit.title || "";
+    /* let editAuthor = book.author || "";
+    let editPages = book.pages || "";
+    let editRead = book.read || false;
+    let editInfo = book.info || "";
+    const handleEdit = () => {
+      console.log("called");
+    };
+
+    const initModal = () => {
+      return setShowDialog(!showDialog);
+    };
+
+    return (
+      <>
+        <Modal show={showDialog}>
+          <Modal.Header closeButton onClick={initModal}>
+            <Modal.Title>Book Editing</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form action={handleEdit()} className="edit-book">
+              <div className="mb-3">
+                <label htmlFor="editTitle" className="form-label">
+                  Edit Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="editTitle"
+                  placeholder=""
+                />
+              </div>
+              <button className="submit btn btn-secondary text-white">
+                Edit Book
+              </button>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <button className="btn btn-danger" onClick={initModal}>
+              Close
+            </button>
+            <button className="btn btn-dark" onClick={initModal}>
+              Store
+            </button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+
+  /* const handleShowDialog = () => {
+    return setShowDialog(!showDialog);
+  }; */
