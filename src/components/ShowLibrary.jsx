@@ -11,6 +11,7 @@ const ShowLibrary = () => {
   const [bookToEdit, setBookToEdit] = useState(null);
 
   const handleCloseEditDialog = () => {
+    setBookToEdit(null);
     setShowDialog(false);
   };
 
