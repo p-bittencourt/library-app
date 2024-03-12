@@ -8,6 +8,18 @@ function EditDialog({ show, handleClose, book, editBookFunc }) {
   const [editRead, setEditRead] = useState(book.read);
   const [editInfo, setEditInfo] = useState(book.info);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleClose();
+    editBookFunc({
+      title: editTitle,
+      author: editAuthor,
+      pages: editPages,
+      read: editRead,
+      info: editInfo,
+    });
+  };
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -15,7 +27,7 @@ function EditDialog({ show, handleClose, book, editBookFunc }) {
           <Modal.Title>Book Editing</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="edit-book">
+          <form className="edit-book" onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="editTitle" className="form-label">
                 Edit Title
@@ -107,19 +119,7 @@ function EditDialog({ show, handleClose, book, editBookFunc }) {
                 }}
               />
             </div>
-            <button
-              className="btn btn-secondary text-white"
-              onClick={() => {
-                handleClose();
-                editBookFunc({
-                  title: editTitle,
-                  author: editAuthor,
-                  pages: editPages,
-                  read: editRead,
-                  info: editInfo,
-                });
-              }}
-            >
+            <button className="btn btn-secondary text-white" type="submit">
               Edit Book
             </button>
           </form>
