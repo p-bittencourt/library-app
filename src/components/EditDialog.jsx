@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 
 function EditDialog({ show, handleClose, book, editBookFunc }) {
+  const bookId = book.id;
   const [editTitle, setEditTitle] = useState(book.title);
   const [editAuthor, setEditAuthor] = useState(book.author);
   const [editPages, setEditPages] = useState(book.pages);
@@ -12,6 +13,7 @@ function EditDialog({ show, handleClose, book, editBookFunc }) {
     e.preventDefault();
     handleClose();
     editBookFunc({
+      id: bookId,
       title: editTitle,
       author: editAuthor,
       pages: editPages,

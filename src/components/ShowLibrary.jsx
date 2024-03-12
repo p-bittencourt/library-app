@@ -12,7 +12,7 @@ const ShowLibrary = () => {
 
   const editBook = (editedBook) => {
     const updatedStoredBooks = storedBooks.map((book) =>
-      book.title === editedBook.title ? editedBook : book
+      book.id === editedBook.id ? editedBook : book
     );
     localStorage.setItem("library", JSON.stringify(updatedStoredBooks));
   };
@@ -51,7 +51,7 @@ const ShowLibrary = () => {
           <p className="card-text">Pages: {book.pages}</p>
           <button
             className="btn btn-white remove-button text-black"
-            onClick={() => handleDeleteNotification(index)}
+            onClick={() => handleDeleteNotification(book)}
           >
             x
           </button>
@@ -69,7 +69,7 @@ const ShowLibrary = () => {
   };
 
   const handleRemoveBook = () => {
-    const newList = storedBooks.filter((_, i) => i !== bookToDelete);
+    const newList = storedBooks.filter((book) => book.id !== bookToDelete.id);
     localStorage.setItem("library", JSON.stringify(newList));
     setRemovedBook(true);
     setShowDeleteNotification(false);
@@ -81,8 +81,8 @@ const ShowLibrary = () => {
     setBookToDelete(null);
   };
 
-  const handleDeleteNotification = (index) => {
-    setBookToDelete(index);
+  const handleDeleteNotification = (book) => {
+    setBookToDelete(book);
     setShowDeleteNotification(true);
   };
 
@@ -95,7 +95,7 @@ const ShowLibrary = () => {
             className="alert alert-danger m-3 d-flex justify-content-between align-items-center"
             role="alert"
           >
-            Do you wish to the delete the book from the list?
+            Do you wish to delete the book from the list?
             <div className="button-container">
               <button type="button" className="btn" onClick={handleRemoveBook}>
                 Yes

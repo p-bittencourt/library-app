@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Book, storeBook, clearStoredBooks } from "../utils/Book";
+import { storeBook, createBook } from "../utils/Book";
 
 const BookRegister = () => {
   const [title, setTitle] = useState("");
@@ -21,7 +21,7 @@ const BookRegister = () => {
       infoValue = "Book description not informed.";
     }
 
-    const newBook = new Book(title, author, pagesValue, infoValue, read);
+    const newBook = createBook(title, author, pagesValue, infoValue, read);
 
     storeBook(newBook);
 

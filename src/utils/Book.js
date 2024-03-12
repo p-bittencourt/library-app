@@ -1,14 +1,15 @@
-class Book {
-  constructor(title, author, pages, info, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = info;
-    this.summary = function () {
-      console.log(info);
-    };
-  }
+import { v4 as uuidv4 } from "uuid";
+
+function createBook(title, author, pages, info, read) {
+  const id = uuidv4();
+  return {
+    id,
+    title,
+    author,
+    pages,
+    info,
+    read,
+  };
 }
 
 const getStoredBooks = () => {
@@ -27,4 +28,4 @@ const storeBook = (book) => {
   localStorage.setItem("library", JSON.stringify(storedBooks));
 };
 
-export { Book, storeBook, clearStoredBooks, getStoredBooks };
+export { createBook, storeBook, clearStoredBooks, getStoredBooks };
