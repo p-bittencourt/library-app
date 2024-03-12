@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 
-function EditDialog({ show, handleClose, book }) {
+function EditDialog({ show, handleClose, book, editBookFunc }) {
   const [editTitle, setEditTitle] = useState(book.title);
   const [editAuthor, setEditAuthor] = useState(book.author);
   const [editPages, setEditPages] = useState(book.pages);
@@ -109,7 +109,16 @@ function EditDialog({ show, handleClose, book }) {
             </div>
             <button
               className="btn btn-secondary text-white"
-              onClick={handleClose}
+              onClick={() => {
+                handleClose();
+                editBookFunc({
+                  title: editTitle,
+                  author: editAuthor,
+                  pages: editPages,
+                  read: editRead,
+                  info: editInfo,
+                });
+              }}
             >
               Edit Book
             </button>

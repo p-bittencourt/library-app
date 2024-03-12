@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getStoredBooks } from "../utils/Book";
 import EditDialog from "./EditDialog";
 
@@ -9,6 +9,13 @@ const ShowLibrary = () => {
   const [bookToDelete, setBookToDelete] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const [bookToEdit, setBookToEdit] = useState(null);
+
+  const editBook = (editedBook) => {
+    const updatedStoredBooks = storedBooks.map((book) =>
+      book.title === editedBook.title ? editedBook : book
+    );
+    localStorage.setItem("library", JSON.stringify(updatedStoredBooks));
+  };
 
   const handleCloseEditDialog = () => {
     setBookToEdit(null);
@@ -21,7 +28,7 @@ const ShowLibrary = () => {
   };
 
   const renderBooks = (storedBooks) => {
-    if (storedBooks.length === 0) {
+    if (!storedBooks || storedBooks.length === 0) {
       return (
         <div className="container text-center">
           <h3 className="mt-5 section-title">No books stored</h3>
@@ -105,9 +112,9 @@ const ShowLibrary = () => {
               show={showDialog}
               handleClose={handleCloseEditDialog}
               book={bookToEdit}
+              editBookFunc={editBook}
             />
           )}
-          {/* showDialog && editDialog()*/}
           {renderBooks(storedBooks)}
         </div>
       </div>
