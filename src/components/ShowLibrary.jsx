@@ -40,8 +40,8 @@ const ShowLibrary = () => {
       setRemovedBook(!removedBook);
     }
 
-    return storedBooks.map((book, index) => (
-      <div className="card mt-3" key={index}>
+    return storedBooks.map((book) => (
+      <div className="card mt-3" key={book.id}>
         <div className="card-body book-card">
           <h5 className="card-title">{book.title}</h5>
           <h6 className="card-subtitle mb-2 text-body-secondary">
